@@ -1,0 +1,6 @@
+{
+    "watch":["src"],
+    "ext": "ts",
+    "ignro  e": ["stc/**/*.spec.ts"],
+    "exec": "nest start"
+}
