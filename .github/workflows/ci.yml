@@ -14,25 +14,38 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [22.x]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
-        working-directory: worksheet2/my-react-app
+        working-directory: worksheet2/my-nest-app
+
+      - name: Debug Information
+        run: |
+          node -v
+          npm -v
+          ls -la node_modules/.bin/
+        working-directory: worksheet2/my-nest-app
+
+      - name: Set execute permissions for Jest and Nest
+        run: |
+          chmod +x node_modules/.bin/jest
+          chmod +x node_modules/.bin/nest
+        working-directory: worksheet2/my-nest-app
 
       - name: Run the tests
-        run: npm test
-        working-directory: worksheet2/my-react-app
+        run: npx jest
+        working-directory: worksheet2/my-nest-app
 
       - name: Build
         run: npm run build
-        working-directory: worksheet2/my-react-app
+        working-directory: worksheet2/my-nest-app
