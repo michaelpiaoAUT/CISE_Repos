@@ -36,6 +36,10 @@ jobs:
           ls -la node_modules/.bin/
         working-directory: worksheet2/my-nest-app
 
+      - name: Set execute permissions for Jest
+        run: chmod +x node_modules/.bin/jest
+        working-directory: worksheet2/my-nest-app
+
       - name: Run the tests
         run: npx jest
         working-directory: worksheet2/my-nest-app
