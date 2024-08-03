@@ -29,8 +29,15 @@ jobs:
         run: npm install
         working-directory: worksheet2/my-nest-app
 
+      - name: Debug Information
+        run: |
+          node -v
+          npm -v
+          ls -la node_modules/.bin/
+        working-directory: worksheet2/my-nest-app
+
       - name: Run the tests
-        run: npm test
+        run: npx jest
         working-directory: worksheet2/my-nest-app
 
       - name: Build
